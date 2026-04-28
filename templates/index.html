@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Taller II - Flask</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div style="max-width: 500px; margin: auto; padding: 20px; font-family: sans-serif;">
+        <h2>Registro de Usuarios</h2>
+        
+        <form action="/insertar" method="POST" id="userForm">
+            <input type="text" name="nombre" id="nombre" placeholder="Nombre" required style="width:100%; margin-bottom:10px; padding:8px;">
+            <input type="email" name="correo" placeholder="Correo" required style="width:100%; margin-bottom:10px; padding:8px;">
+            <button type="submit" style="width:100%; padding:10px; background:#28a745; color:white; border:none; cursor:pointer;">Enviar</button>
+        </form>
+
+        <hr>
+
+        <h3>Lista de Registrados</h3>
+        <table border="1" style="width:100%; border-collapse: collapse;">
+            <thead>
+                <tr style="background:#eee;">
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for u in usuarios %}
+                <tr>
+                    <td>{{ u.nombre }}</td>
+                    <td>{{ u.correo }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
